@@ -1,0 +1,27 @@
+CREATE TABLE Artist (                                                     
+    ArtistID int NOT NULL AUTO_INCREMENT,
+    name varchar(40) NOT NULL,
+    PRIMARY KEY(ArtistID),
+    UNIQUE KEY(name)
+);
+CREATE TABLE Album (
+    AlbumID int NOT NULL AUTO_INCREMENT,
+    AlbumName varchar(40) NOT NULL,
+    Artist int NOT NULL,
+    Song int,
+    PRIMARY KEY(AlbumID),
+    FOREIGN KEY(Artist) REFERENCES Artist(ArtistID)   
+);
+CREATE TABLE Song (
+   SongID int NOT NULL AUTO_INCREMENT,
+   SongName varchar(40) NOT NULL,
+   SongDuration varchar(40) NOT NULL,
+  Artist int,
+Album int NOT NULL,
+   PRIMARY KEY(SongID),
+   FOREIGN KEY(Album) REFERENCES Album(AlbumID),
+   FOREIGN KEY(Artist) REFERENCES Artist(ArtistID) 
+); 
+
+Alter table Album
+add FOREIGN KEY(Song) REFERENCES Song(SongID);	
